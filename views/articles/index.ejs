@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Blog Website</title>
+    <style>
+        body{
+            background-image: url('/images/background.PNG');
+            background-size: cover;
+        }
+        .container{
+            margin-top:50px;
+            margin-bottom: 50px;
+        }
+        
+    </style>
+  
+    
+</head>
+<body>
+       <div class="container">
+          <center><h1 class="mb-4" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-size: 60px ;font-weight:500; "><b>Bharat Intern Blog Website</b></h1><br></center>
+          <a href="/articles/new" class ="btn btn-success">Create Article></a>
+          <br>   
+           <% articles.forEach(article=>{%>
+               <br>
+                  <div class="card mt-4" style="box-shadow: 0px 10px 10px rgb(78, 194, 194);background-color: rgba(255, 255, 255, 0.550) !important; transition: background-color 0.3s;">
+                    <div class="card-body">
+                      <h4 class="card-title">
+                         <%=article.title%>
+                      </h4>
+                         <div class="card-subtitle text-muted mb-2">
+                        <%=article.createdAt.toLocaleDateString() %>
+                    </div>
+                    <div class="card-text mb-2">
+                        <%=article.description%>
+                    </div>
+                    <a href="articles/<%=article.id%>" class="btn btn-primary">Read More</a>
+                    <a href="articles/edit/<%=article.id%>" class="btn btn-info">Edit</a>
+
+
+                    <form action="/articles/<%=article.id%>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+
+                </div>
+            </div>
+
+        <%})%>
+
+    
+
+        </div>
+
+</body>
+
+</html>
